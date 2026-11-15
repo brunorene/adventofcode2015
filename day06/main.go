@@ -43,8 +43,7 @@ func parse(input string) (lines []commandLine) {
 
 		var start, end point
 
-		_, errToggle := fmt.Sscanf(line, "toggle %d,%d through %d,%d", &start.x, &start.y, &end.x, &end.y)
-		if errToggle == nil {
+		if _, err := fmt.Sscanf(line, "toggle %d,%d through %d,%d", &start.x, &start.y, &end.x, &end.y); err == nil {
 			lines = append(lines, commandLine{
 				command: toggle,
 				start:   start,
@@ -54,8 +53,7 @@ func parse(input string) (lines []commandLine) {
 			continue
 		}
 
-		_, errOn := fmt.Sscanf(line, "turn on %d,%d through %d,%d", &start.x, &start.y, &end.x, &end.y)
-		if errOn == nil {
+		if _, err := fmt.Sscanf(line, "turn on %d,%d through %d,%d", &start.x, &start.y, &end.x, &end.y); err == nil {
 			lines = append(lines, commandLine{
 				command: on,
 				start:   start,
@@ -65,8 +63,7 @@ func parse(input string) (lines []commandLine) {
 			continue
 		}
 
-		_, errOff := fmt.Sscanf(line, "turn off %d,%d through %d,%d", &start.x, &start.y, &end.x, &end.y)
-		if errOff == nil {
+		if _, err := fmt.Sscanf(line, "turn off %d,%d through %d,%d", &start.x, &start.y, &end.x, &end.y); err == nil {
 			lines = append(lines, commandLine{
 				command: off,
 				start:   start,
